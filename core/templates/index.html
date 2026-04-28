@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>CriarAtividade</title>
+    <style>
+        body {
+            background-color: #fffafa;
+        }
+
+        .container {
+            background-color: lightblue;
+            width: 800px;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .table,
+        footer {
+            width: 2200px;
+        }
+    </style>
+</head>
+
+<body>
+    <center><br>
+        <div class="table-responsive"><br>
+            <h2>
+                <table class="table table-striped" style="border:solid lightblue;">
+                    <tr>
+                        <th colspan="5" style="text-align: center;padding:20px"><b>Cadastrar atividade? <a
+                                    href="{% url 'cadastrar' %}" class="btn btn-primary btn-lg"><b>CADASTRAR</b></a>
+                        </th>
+                    </tr>
+                </table><br>
+                <label>
+                    <h1 style="text-align:center;color:blue"><b>Lista de Atividades de hoje em andamento:</b></h1>
+                </label><br>
+
+                <br>
+                {% if listaAtividades %}
+                <table class="table table-striped" style="border:solid lightblue;">
+                    <tr>
+
+                        <th>Título</th>
+                        <th>Data</th>
+                        <th>Local</th>
+                        <th>Tarefa</th>
+                        <th>OPÇÃO</th>
+                    </tr>
+
+                    {% for item in listaAtividades %}
+                    <tr>
+
+                        <td>{{item.titulo}}</td>
+                        <td>{{item.data}}</td>
+                        <td>{{item.local}}</td>
+                        <td>{{item.tarefa}}</td>
+                        <td><a href="/atualizar/{{item.id}}" class="btn btn-warning btn-lg"><b>Editar</b></a>
+                            <a href="/deletar/{{item.id}}" class="btn btn-danger btn-lg"><b></b>Excluir</b></a>
+                        </td>
+                    </tr>
+                    {% endfor%}
+                </table>
+                {% else %}
+                <br>
+                <table class="table table-striped" style="border:solid lightblue;">
+                    <tr>
+                        <th style="text-align:center;" colspan="5"><b style="color:red">NENHUM REGISTO DE ATIVIDADE PARA
+                                HOJE!</b></th>
+                    </tr>
+
+                    {% endif %}
+                </table>
+            </h2>
+        </div>
+        <br>
+        <br>
+        <center>
+            <footer id="footer" class="bg-light">
+                <div style="text-align:center;border:solid lightblue;padding:20px">
+                    <h3><b>Projeto Interdiciplinar - Fatec Araras - ®Daniel Carolino - 3º Semestre 2023</b></h3>
+                </div>
+            </footer>
+        </center>
+</body>
+</center>
+
+</html>
